@@ -1,0 +1,45 @@
+<scene>
+	<name>Elpytica Terminal 21</a>
+	<summary>
+		You stumble out of your shuttle into the Elyptica spaceport.
+		Damn, those shuttles could be a bit smoother.
+		You spent all your cash on that shuttle, you only have a small amount left.
+	</summary>
+	<ambient>You shuffle restlessly under the somewhat dim electric lights.</ambient>
+</scene>
+
+<scene>
+	<name>Elyptica Spaceport Hall 1</name>
+	<summary>
+		The white, austere halls are bustling with people.
+		They are a hallmark of Martian technology and progress-
+		The beauty and vigor of it's architecture juxtaposited with
+		the height of engineering technology of the late space age.
+		It fills you with determination and hope for the future as
+		quickly as it frequently snatches it away upon thought of the
+		many social perils that lie murmering below it's placid surface.
+
+		The singularity, by definition, was to be an era afterwhich
+		society before couldn't- and hadn't planned for. Nobody had
+		imagined it would be quite so bland. Perhaps it had been gutted.
+		Perhaps Moore's law wasn't nearly as much of a law as some had
+		hoped.
+
+		Your thoughts are interrupted as a space cruiser lands in a terminal
+		near you. That rattling makes your estachuarine fluid rattle in
+		your ears.
+	</summary>
+	<ambient>The bustling and culture of the halls excites you, but you're here for a reason..</ambient>
+</scene>
+
+<scene>
+	<name>Elyptica Food Court</name>
+	<summary>
+		A food court, with hosting many 'restaurants with disparate offerings.
+		Care to take a closer look?
+	<summary>
+	<ambient>The smell makes you mouth water.</ambient>
+</scene>
+
+	The singularity age was the golden age of human advancement as
+	it once was- alone in the universe. It was 
