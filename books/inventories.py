@@ -1,3 +1,13 @@
+'''
+    books/inventories
+
+    Book containing all the code relating to inventories.
+'''
+
+'''
+
+    add_stack function:
+'''
 class Inventory:
     stacks = []
 
@@ -11,6 +21,12 @@ class Inventory:
         if found == False:
             self.stacks.append(stack)
 
+    def remove_stack(self, stack):
+        if(self.contains_stack(stack)):
+            for fs in self.stacks:
+                if stack.name == fs.name:
+                    fs.amount -= stack.amount
+
     def contains_stack(self, stack):
         found = False
         for fs in self.stacks:
@@ -18,17 +34,13 @@ class Inventory:
                 if stack.amount <= fs.amount:
                     found = True
         return found
-    
-    def remove_stack(self, stack):
-        if(self.contains_stack(stack)):
-            for fs in self.stacks:
-                if stack.name == fs.name:
-                    fs.amount -= stack.amount
 
     def print_inv(self):
         for item in self.stacks:
             item.out()
 
+'''
+'''
 class Stack:
         def __init__(self, name, amount):
             self.name = name

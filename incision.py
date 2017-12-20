@@ -1,22 +1,19 @@
 '''
+    /incision.py
     Mars RPG - Main File
 
     Structure:
-    - Opening comment {this}
-    - Imports
-    - Constants {Species, Attributes, Skills}
-    - Classes
-    - Global methods
-    - Where code execution begins
+        - Imports
+        - Constants {Species, Attributes, Skills}
+        - Classes
+        - Global methods
+        - Where code execution begins
 '''
 
-''' Imports '''
-import scene
-from inventory import *        # Provides code for inventories
-#import savemanager             # Manages game saving and loading.
-from species_loader import *   # Manages species XML files.
-import default_scenes          # Manages scene XML files.
-''' End imports '''
+import books/scenes
+from books/inventories import *        # Provides code for inventories
+from books/species_loader import *   # Manages species XML files.
+import books/default_scenes          # Manages scene XML files.
 
 ''' Constants '''
 # Species information
@@ -121,7 +118,6 @@ class Attributizer(NPC):
     
     def attributes(self, character):
         self.say(str(starting_attribute_points) + ' points to distribute ====')
-
         remaining_points = starting_attribute_points
         for attribute in attribute_names:
             correct_value = False
@@ -130,12 +126,10 @@ class Attributizer(NPC):
                     points = int(raw_input(' - How many points in attribute \'' + attribute + '\': '))
                     remaining_points -= points
                     character.attributes[attribute] = points
-
                     print('    ' + str(remaining_points) + ' remaining')
                     correct_value = True
                 except:
                     print('Not a number!')
-
         print('-------------------------')
         self.say('Just a review of what you\'ve chosen:')
         for attribute in attribute_names:
@@ -148,14 +142,11 @@ class Attributizer(NPC):
         choice = 'n'
         while choice == 'n':
                 choice = self.attributes(character)
-
         self.say('...')
         self.say('Great! Let\'s take a look at your skills.')
         remaining_points = starting_skill_points
-
         for skill_name in skill_names:
             print('skill: ' + skill_name + ': ' + str(character.skills[skill_name]))
-
         choice = request_answer('Is this correct? Skill detector is in alpha and it\'s assessments can be modified by selecting no. y/n')
         while choice == 'n':
             configure_char_skills(character)
