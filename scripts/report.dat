@@ -1,0 +1,16 @@
+ ================ REPORT ===================== 
+ MCC Boarding Report 10/22/2436 MCT            
+
+= Passenger name: {{ character_name }}
+= Passenger species: {{ character_species }}
+= Origin port: Central Elonia
+= Destination port: Elyptica
+
+= Passenger attribute report:
+{{ attribute_report }}
+= Passenger skill report:
+{{ skill_report }}
+Approved by ATRS (Automatic Terrorism Reduction System): yes
+Flight boarding to commense at 14:36.
+ ==============================================
+

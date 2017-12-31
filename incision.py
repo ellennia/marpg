@@ -10,6 +10,8 @@
         - Where code execution begins
 '''
 
+from jinja2 import Template
+
 import scenes
 from inventories import *        # Provides code for inventories
 import default_scenes          # Manages scene XML files.
@@ -181,6 +183,11 @@ def configure_char_skills(character):
     points = int(request_answer('By how many points?'))
     character.skills[skill] += points
 
+def get_script(name):
+    with open(name) as f:
+        templt = Template(f.read())
+    return templt
+
 def character_creation_sequence():
     guard = NPC('Guard')
     attributizer = Attributizer() # (NPC)
@@ -194,7 +201,7 @@ def character_creation_sequence():
     guard.say('Using the Mars Central Core\'s species definitions, of course.')
     species_chosen = ask()
     while species_chosen not in species_names:
-        guard.say('That... isn\'t an option. That\'s beurocracy for ya.')
+        guard.say('That... isn\'t an option. That\'s buerocracy for ya.')
         guard.say('You have to be either a human, zeta, hybrid, or reptillian.')
         guard.say('Surely you must be one of the above?')
         species_chosen = ask()
@@ -204,28 +211,23 @@ def character_creation_sequence():
     guard.say('Now for a medical checkup. Stare directly into the attributizer.')
     guard.say('Let it determine your physical and mental strengths.')
     guard.say('...') 
+
+    # Be 'questioned' by Attributizer
     print('{look into attributizer (press enter)}')
     wait()
     attributizer.capture_interaction(character)
-    print(' ================ REPORT ===================== ')
-    print(' MCC Boarding Report 10/22/2436 MCT            ')
-    print('')
-    print('= Passenger name: {}'.format(character.name))
-    print('= Passenger species: {}'.format(character.species)) 
-    print('= Origin port: Central Elonia')
-    print('= Destination port: Elyptica')
-    print('')
-    print('= Passenger attribute report:')
-    for attribute_name in attribute_names:
-        print('    = ' + attribute_name + ': ' + str(character.attributes[attribute_name]))
-    print('= Passenger skill report:')
-    for skill_name in skill_names:
-        print('    = ' + skill_name + ': ' + str(character.skills[skill_name]))
-    print('')
-    print('Approved by ATRS (Automatic Terrorism Reduction System): yes')
-    print('Flight boarding to commense at 14:36.')
-    print(' ==============================================')
-    print('')
+    # Render the Passenger Report in scripts/report.dat
+    attribute_report = ''
+    for attribute_name in attribute_names: attribute_report += '    = ' + attribute_name + ': ' + str(character.attributes[attribute_name]) + '\n'
+    skill_report = ''
+    for skill_name in skill_names: skill_report += '    = ' + skill_name + ': ' + str(character.skills[skill_name]) + '\n'
+    report = get_script('scripts/report.dat').render(
+            character_name = character.name, 
+            character_species = character.species, 
+            attribute_report = attribute_report, 
+            skill_report = skill_report)
+    print report
+
     guard.say('Alright... well, that\'s that.')
     guard.say('This all passes by the way. You are free to board your shuttle.')
     guard.say('Enjoy!')
