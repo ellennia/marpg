@@ -2,6 +2,8 @@
     /incision.py
     Mars RPG - Main File
 
+    Uses jinja2 for templating
+
     Structure:
         - Imports
         - Constants {Species, Attributes, Skills}
@@ -185,8 +187,8 @@ def configure_char_skills(character):
 
 def get_script(name):
     with open(name) as f:
-        templt = Template(f.read())
-    return templt
+        template = Template(f.read())
+    return template
 
 def character_creation_sequence():
     guard = NPC('Guard')
@@ -198,10 +200,10 @@ def character_creation_sequence():
     guard.say('' + name + '... ' + name + '...  {typing} ah, here we go, found your record.')
     guard.say('Gotcha. Now I have just a few more questions to verify who you are.')
     guard.say('What species are you a member of? Human, zeta, hybrid, or reptilian?')
-    guard.say('Using the Mars Central Core\'s species definitions, of course.')
+    guard.say("Using the Mars Central Core's species definitions, of course.")
     species_chosen = ask()
     while species_chosen not in species_names:
-        guard.say('That... isn\'t an option. That\'s buerocracy for ya.')
+        guard.say("That... isn't an option. That's buerocracy for ya.")
         guard.say('You have to be either a human, zeta, hybrid, or reptillian.')
         guard.say('Surely you must be one of the above?')
         species_chosen = ask()
@@ -228,7 +230,7 @@ def character_creation_sequence():
             skill_report = skill_report)
     print report
 
-    guard.say('Alright... well, that\'s that.')
+    guard.say("Alright... well, that's that.")
     guard.say('This all passes by the way. You are free to board your shuttle.')
     guard.say('Enjoy!')
     print('...')
@@ -241,7 +243,7 @@ def character_creation_sequence():
 
 ''' Start running '''
 character = None
-does_character_exist = False#detect_save()
+does_character_exist = False #detect_save()
 
 if not does_character_exist:
     print (' -- ERROR -- ')
@@ -257,7 +259,18 @@ if not does_character_exist:
 current_scene = default_scenes.get_intro()
 first_message = True
 continue_loop = True
-# Game loop
+
+'''
+    This is the game loop.
+    It runs as long as 'continue_loop' is set to True.
+
+    The first thing it does is check if a character is already made.
+        If not, then it asks if you want to load a save file, or create a character.
+            If you want to load a save, it will ask for the file name.
+            If you want to create a character, it goes to the character creation wizard.
+        Once a character is made, you are dropped into the starting scene.
+    If your character is from a save file, it is the last scene you were in.
+'''
 while continue_loop:
     if first_message:
         current_scene.print_messages()
@@ -268,16 +281,26 @@ while continue_loop:
     print('Location: {} | Money {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
     action = request_answer('')
 
+    '''
+        Actions:
+        The things you can do every turn.
+
+        Current actions:
+            quit: Ends the game.
+            ?: Makes a suggestion.
+            {nothing}: Suggests you do something.
+            {the final nothing}: Expresses exasperation.
+    '''
     if action == '?':
         print 'You could try looking around.'
-
         character.give_item(Stack('goggle', 2))
-    elif action == '':
-        print 'You think now might be the time for action.'
     elif action == 'quit':
         continue_loop = False
+    elif action == '':
+        print 'You think now might be the time for action.'
     else:
         print 'You\'re not really sure what that means.'
+
 print('Quitting...')
 ''' End runstrip '''
 
