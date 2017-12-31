@@ -10,10 +10,10 @@
         - Where code execution begins
 '''
 
-import books/scenes
-from books/inventories import *        # Provides code for inventories
-from books/species_loader import *   # Manages species XML files.
-import books/default_scenes          # Manages scene XML files.
+import scenes
+from inventories import *        # Provides code for inventories
+#from species_loader import *   # Manages species XML files.
+import default_scenes          # Manages scene XML files.
 
 ''' Constants '''
 # Species information

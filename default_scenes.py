@@ -1,4 +1,4 @@
-from scene import *
+from scenes import *
 
 def get_intro():
     fragments = ['','','','']
