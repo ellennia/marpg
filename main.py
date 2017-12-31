@@ -216,12 +216,12 @@ def character_creation_sequence():
     print('{look into attributizer (press enter)}')
     wait()
     attributizer.capture_interaction(character)
-    # Render the Passenger Report in scripts/report.dat
+    # Render the Passenger Report in scripts/cc_report.dat
     attribute_report = ''
     for attribute_name in attribute_names: attribute_report += '    = ' + attribute_name + ': ' + str(character.attributes[attribute_name]) + '\n'
     skill_report = ''
     for skill_name in skill_names: skill_report += '    = ' + skill_name + ': ' + str(character.skills[skill_name]) + '\n'
-    report = get_script('scripts/report.dat').render(
+    report = get_script('scripts/cc_report.dat').render(
             character_name = character.name, 
             character_species = character.species, 
             attribute_report = attribute_report, 
