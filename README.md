@@ -1,3 +1,1 @@
-/books/: All the individual code files used exception '/incision.py'
-/fluxions/: All temp data.
-/resources/:
+An RPG made by Ellen and Lexi, set on Mars.
