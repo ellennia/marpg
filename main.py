@@ -298,7 +298,7 @@ while continue_loop:
         print(current_scene.get_ambient())
     first_message = False
 
-    print('Location: {} | Money {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
+    print('Location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
     action = request_answer('')
 
     '''
@@ -306,8 +306,12 @@ while continue_loop:
         The things you can do every turn.
 
         Current actions:
-            quit: Ends the game.
+            bearings: Tells you about your character's surroundings
+            moveto: Has your character move to a different, adjacent scene.
+
+            quit: Ends the game
             ?: Makes a suggestion.
+
             {nothing}: Suggests you do something.
             {the final nothing}: Expresses exasperation.
     '''
@@ -321,7 +325,7 @@ while continue_loop:
         elif action == 'bearings':
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             for adjacents in current_scene.adjacents:
-                print('Nearby scenes: {}'.format(adjacents))
+                print('Nearby areas that you can see: {}'.format(adjacents))
 
         elif action.split()[0] == 'moveto':
             words = action.split()
@@ -330,7 +334,7 @@ while continue_loop:
                 current_scene = scenemap[location]
                 current_scene.print_messages()
             else:
-                print('not a scene.')
+                print('You can\'t find anything that resembles that around you.')
             
         elif action == 'quit':
             continue_loop = False
