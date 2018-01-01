@@ -15,7 +15,7 @@
 import xml.etree.ElementTree # XML
 from jinja2 import Template
 
-import scenes
+from scenes import *
 from inventories import *        # Provides code for inventories
 import default_scenes          # Manages scene XML files.
 
@@ -253,6 +253,10 @@ if not does_character_exist:
         clear()
         character = character_creation_sequence()
         clear()
+    elif yn == 'p':
+        print('ah, the old dev cheat.')
+        print('have a pre-made hardcoded character')
+        chracter = Character('Premade', 'human')
     else:
         filename = request_answer('Type filename of existing save...')
         load_savegame(filename)
@@ -272,10 +276,21 @@ continue_loop = True
         Once a character is made, you are dropped into the starting scene.
     If your character is from a save file, it is the last scene you were in.
 '''
+
 scenes = xml.etree.ElementTree.parse('scenes.xml').getroot()
-for scene in scenes.findall('scene'):
-    al = scene.findall('name')
-    print al
+scenemap = {}
+for scene in scenes:
+    name = scene.find('name').text
+    summary = scene.find('summary').text.split('\n')
+    game_tag = scene.find('tag').text
+    ambient = scene.find('ambient').text
+    adjacent = scene.find('adjacent')
+    adjtags = adjacent.findall('tag')
+    adjacent_scenes = [tag.text for tag in adjtags]
+    the_scene = Scene(name, summary, ambient, adjacent_scenes)
+    scenemap[game_tag] = the_scene
+current_scene = scenemap['terminal_21']
+
 while continue_loop:
     if first_message:
         current_scene.print_messages()
@@ -296,15 +311,33 @@ while continue_loop:
             {nothing}: Suggests you do something.
             {the final nothing}: Expresses exasperation.
     '''
-    if action == '?':
-        print 'You could try looking around.'
-        character.give_item(Stack('goggle', 2))
-    elif action == 'quit':
-        continue_loop = False
-    elif action == '':
-        print 'You think now might be the time for action.'
+    if len(action) == 0:
+        print('typing something might be recommended if you wish to play.')
     else:
-        print 'You\'re not really sure what that means.'
+        if action == '?':
+            print 'You could try looking around.'
+            character.give_item(Stack('goggle', 2))
+
+        elif action == 'bearings':
+            print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
+            for adjacents in current_scene.adjacents:
+                print('Nearby scenes: {}'.format(adjacents))
+
+        elif action.split()[0] == 'moveto':
+            words = action.split()
+            location = action.split()[1]
+            if location in scenemap:
+                current_scene = scenemap[location]
+                current_scene.print_messages()
+            else:
+                print('not a scene.')
+            
+        elif action == 'quit':
+            continue_loop = False
+        elif action == '':
+            print 'You think now might be the time for action.'
+        else:
+            print 'You\'re not really sure what that means.'
 
 print('Quitting...')
 ''' End runstrip '''

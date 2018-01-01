@@ -7,5 +7,5 @@ def get_intro():
     fragments[2] = "You spent all your cash on that shuttle, you only have a small"
     fragments[3] = "amount left to spend on some things."
     ambient = 'You shuffle restlessly under the somewhat dim electric lights.'
-    elyptica_intro = Scene('Elyptica Terminal 21', fragments, ambient)
+    elyptica_intro = Scene('Elyptica Terminal 21', fragments, ambient, [])
     return elyptica_intro

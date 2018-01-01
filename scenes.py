@@ -8,6 +8,12 @@ class Scene:
         self.messages = messages
         self.ambient = ambient
 
+    def __init__(self, name, messages, ambient, adjacents):
+        self.name = name
+        self.messages = messages
+        self.ambient = ambient
+        self.adjacents = adjacents
+
     def get_messages(self):
         return self.messages
 
