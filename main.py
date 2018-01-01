@@ -12,6 +12,7 @@
         - Where code execution begins
 '''
 
+import xml.etree.ElementTree # XML
 from jinja2 import Template
 
 import scenes
@@ -271,6 +272,10 @@ continue_loop = True
         Once a character is made, you are dropped into the starting scene.
     If your character is from a save file, it is the last scene you were in.
 '''
+scenes = xml.etree.ElementTree.parse('scenes.xml').getroot()
+for scene in scenes.findall('scene'):
+    al = scene.findall('name')
+    print al
 while continue_loop:
     if first_message:
         current_scene.print_messages()

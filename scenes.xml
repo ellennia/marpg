@@ -1,0 +1,27 @@
+<scenes region = "spaceport">
+	<scene>
+		<name>Elpytica Terminal 21</name>
+		<tag>terminal_21</tag>
+		<summary>
+			You stumble out of your shuttle into the Elyptica spaceport. It was a rough ride.
+			You spent all your credits on that shuttle, you only have a small amount left.
+			You should get your bearings and figure out how to get out of this joint.
+		</summary>
+		<ambient>You shuffle restlessly under the somewhat dim electric lights.</ambient>
+		<adjacent><tag>spaceport_center</tag></adjacent>
+	</scene>
+
+	<scene>
+		<name>Spaceport Center</name>
+		<tag>spaceport_center</tag>
+		<summary>
+			It wasn't very hard to find the bustling, central core of the spaceport.
+			This place must be small.
+			Around you are a number of shops, as well as halls to all the terminals.
+		</summary>
+		<ambient>The bustle makes you nervous, but the food in the shops makes you salivate.</ambient>
+		<adjacent>
+			<tag>terminal_21</tag>
+		</adjacent>
+	</scene>
+</scenes>

@@ -1,12 +1,3 @@
-<scene>
-	<name>Elpytica Terminal 21</a>
-	<summary>
-		You stumble out of your shuttle into the Elyptica spaceport.
-		Damn, those shuttles could be a bit smoother.
-		You spent all your cash on that shuttle, you only have a small amount left.
-	</summary>
-	<ambient>You shuffle restlessly under the somewhat dim electric lights.</ambient>
-</scene>
 
 <scene>
 	<name>Elyptica Spaceport Hall 1</name>
@@ -40,6 +31,3 @@
 	<summary>
 	<ambient>The smell makes you mouth water.</ambient>
 </scene>
-
-	The singularity age was the golden age of human advancement as
-	it once was- alone in the universe. It was 
