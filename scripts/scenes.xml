@@ -1,5 +1,5 @@
 <scenes region = "spaceport">
-	<scene>
+	<scene type = 'standard'>
 		<name>Elyptica Spaceport's Terminal 21</name>
 		<tag>terminal_21</tag>
 		<summary>
@@ -11,7 +11,7 @@
 		<adjacent><tag>spaceport_center</tag></adjacent>
 	</scene>
 
-	<scene>
+	<scene type = 'standard'>
 		<name>Spaceport Center</name>
 		<tag>spaceport_center</tag>
 		<summary>
@@ -23,10 +23,11 @@
 		<adjacent>
 			<tag>terminal_21</tag>
 			<tag>bathroom_1</tag>
+			<tag>merc_shop</tag>
 		</adjacent>
 	</scene>
 
-	<scene>
+	<scene type = 'standard'>
 		<name>The Spaceport Bathroom</name>
 		<tag>bathroom_1</tag>
 		<summary>
@@ -39,7 +40,21 @@
 		</adjacent>
 	</scene>
 
-	<scene>
+	<scene type = 'shop'>
+		<name>The Shop Without a Name</name>
+		<tag>merc_shop</tag>
+		<summary>The most low end looking store in the entire spaceport.</summary>
+		<ambient>It smells like guns that have somehow gone stale.</ambient>
+		<adjacent>
+			<tag>spaceport_center></tag>
+		</adjacent>
+		<market style = 'fixed'>
+			<item name='old-style plasma rounds' description="They're useless on a modern gun, but deadly on an antique.">50</item>
+			<item name='freeze-dried icecream' description="You thought this was a gun store, but it turns out they just have everything.">10</item>
+		</market>
+	</scene>
+
+	<scene type = 'gag'>
 		<name>GAG</name>
 		<tag>it</tag>
 		<gagtext>You hurt yourself in confusion.</gagtext>
