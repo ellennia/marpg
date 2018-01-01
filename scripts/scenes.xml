@@ -22,6 +22,20 @@
 		<ambient>The bustle makes you nervous, but the food in the shops makes you salivate.</ambient>
 		<adjacent>
 			<tag>terminal_21</tag>
+			<tag>bathroom_1</tag>
+		</adjacent>
+	</scene>
+
+	<scene>
+		<name>The Bathroom</name>
+		<tag>bathroom_1</tag>
+		<summary>
+			It's remarkably well taken care of.
+			You didn't think cleaning bots had gotten this advanced.
+		</summary>
+		<ambient>It kinda stinks in here, and you don't really have to go to the bathroom.</ambient>
+		<adjacent>
+			<tag>spaceport_center></tag>
 		</adjacent>
 	</scene>
 </scenes>

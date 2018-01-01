@@ -1,3 +1,7 @@
 *~
 *.pyc
 scripts/*~
+scripts/*.pyc
+test/*~
+test/*.pyc
+scrap.dat

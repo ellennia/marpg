@@ -1,5 +1,5 @@
 '''
-    /incision.py
+    /main.py
     Mars RPG - Main File
 
     Uses jinja2 for templating
@@ -15,90 +15,14 @@
 import xml.etree.ElementTree # XML
 from jinja2 import Template
 
+from character import *
 from scenes import *
-from inventories import *        # Provides code for inventories
-import default_scenes          # Manages scene XML files.
 
 ''' Constants '''
 # Species information
 species_names = ['human', 'zeta', 'hybrid', 'reptilian']
 
-# Attributes
-starting_attribute_points = 40
-attribute_names = [
-        'strength', 
-        'perception', 
-        'endurance', 
-        'charisma' ,
-        'intelligence' ,
-        'agility' ,
-        'luck'
-        ]
-
-# Skills
-starting_skill_points = 5
-skill_names = [
-        'speech', 
-        'unarmed', 
-        'melee weapons', 
-        'marksman', 
-        'stealth', 
-        'throwing', 
-        'crafting', 
-        'smithing', 
-        'piloting',
-        'engineering',
-        'biology',
-        'programming',
-        'chemistry',
-        'psionics'
-        ]
-''' End constants '''
-
 ''' Classes '''
-class Character:
-    name = ''
-    species = ''
-    attributes = {}
-    skills = {}
-    inventory = Inventory()
-    currency = 0
-
-    def __init__(self, name, species):
-        self.name = name
-        self.species = species
-
-        for name in attribute_names:
-            self.attributes[name] = 0
-
-        for name in skill_names:
-            self.skills[name] = 1
- 
-    ''' health points '''
-    def get_hp():
-        default_health = 50
-        return default_health + 10 * get_attribute('endurance')
-
-    ''' mental health points '''
-    def get_mp(self):
-        default_health = 50
-        return default_health + 10 * get_attribute('intelligence')
-
-    ''' action points '''
-    def get_ap(self):
-        return get_attribute('agility')
-
-    ''' value of attributes (SPECIAL) '''
-    def get_attribute(self, att_name):
-        return int(attributes[att_name])
-
-    def give_item(self, stack):
-        print('You have received a stack of {} {}s.'.format(str(stack.amount),stack.name))
-        self.inventory.add_stack(stack)
-
-    def get_currency(self):
-        return self.currency
-
 class NPC:
     def __init__(self, name):
         self.name = name
@@ -254,14 +178,16 @@ if not does_character_exist:
         character = character_creation_sequence()
         clear()
     elif yn == 'p':
-        print('ah, the old dev cheat.')
-        print('have a pre-made hardcoded character')
-        chracter = Character('Premade', 'human')
+        try:
+            print('Ah, the old dev cheat.')
+            print('have a pre-made hardcoded character')
+            character = Character('Premade', 'human')
+        except:
+            print('wah')
     else:
         filename = request_answer('Type filename of existing save...')
         load_savegame(filename)
 
-current_scene = default_scenes.get_intro()
 first_message = True
 continue_loop = True
 
@@ -277,7 +203,7 @@ continue_loop = True
     If your character is from a save file, it is the last scene you were in.
 '''
 
-scenes = xml.etree.ElementTree.parse('scenes.xml').getroot()
+scenes = xml.etree.ElementTree.parse('scripts/scenes.xml').getroot()
 scenemap = {}
 for scene in scenes:
     name = scene.find('name').text
@@ -307,7 +233,7 @@ while continue_loop:
 
         Current actions:
             bearings: Tells you about your character's surroundings
-            moveto: Has your character move to a different, adjacent scene.
+            move: Has your character move to a different, adjacent scene.
 
             quit: Ends the game
             ?: Makes a suggestion.
@@ -318,27 +244,29 @@ while continue_loop:
     if len(action) == 0:
         print('typing something might be recommended if you wish to play.')
     else:
-        if action == '?':
-            print 'You could try looking around.'
-            character.give_item(Stack('goggle', 2))
+        fragments = action.split()
+        command = fragments[0]
 
-        elif action == 'bearings':
+        if command == '?':
+            print 'You could try looking around.'
+            character.give_item(InventoryStack('goggle', 1))
+
+        elif command == 'bearings':
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             for adjacents in current_scene.adjacents:
                 print('Nearby areas that you can see: {}'.format(adjacents))
 
-        elif action.split()[0] == 'moveto':
-            words = action.split()
-            location = action.split()[1]
+        elif command == 'move':
+            location = fragments[1]
             if location in scenemap:
                 current_scene = scenemap[location]
                 current_scene.print_messages()
             else:
-                print('You can\'t find anything that resembles that around you.')
+                print("You can't find anything that resembles that around you.")
             
-        elif action == 'quit':
+        elif command == 'quit':
             continue_loop = False
-        elif action == '':
+        elif command == '':
             print 'You think now might be the time for action.'
         else:
             print 'You\'re not really sure what that means.'
