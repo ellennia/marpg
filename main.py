@@ -182,6 +182,7 @@ if not does_character_exist:
             print('Ah, the old dev cheat.')
             print('have a pre-made hardcoded character')
             character = Character('Premade', 'human')
+            clear()
         except:
             print('wah')
     else:
@@ -207,25 +208,32 @@ scenes = xml.etree.ElementTree.parse('scripts/scenes.xml').getroot()
 scenemap = {}
 for scene in scenes:
     name = scene.find('name').text
-    summary = scene.find('summary').text.split('\n')
-    game_tag = scene.find('tag').text
-    ambient = scene.find('ambient').text
-    adjacent = scene.find('adjacent')
-    adjtags = adjacent.findall('tag')
-    adjacent_scenes = [tag.text for tag in adjtags]
-    the_scene = Scene(name, summary, ambient, adjacent_scenes)
-    scenemap[game_tag] = the_scene
+    if name == 'GAG': # Is gag 'location', only designed to trigger a joke in command prompt
+        game_tag = scene.find('tag').text
+        gagtext = scene.find('gagtext').text
+        scenemap[game_tag] = Scene(name, gagtext, '', game_tag, [])
+    else:
+        summary = scene.find('summary').text.split('\n')
+        game_tag = scene.find('tag').text
+        ambient = scene.find('ambient').text
+        adjacent = scene.find('adjacent')
+        adjtags = adjacent.findall('tag')
+        adjacent_scenes = [tag.text for tag in adjtags]
+        the_scene = Scene(name, summary, ambient, game_tag, adjacent_scenes)
+        scenemap[game_tag] = the_scene
 current_scene = scenemap['terminal_21']
 
 while continue_loop:
     if first_message:
+        print('     Current location: {}'.format(current_scene.get_name()))
+        print('                       Money: {}, Health: {}'.format(str(5), str(10)))
         current_scene.print_messages()
     else:
-        print(current_scene.get_ambient())
+        print('::       \~  ' + current_scene.get_ambient()+ '  \~')
     first_message = False
 
-    print('Location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
     action = request_answer('')
+    print('')
 
     '''
         Actions:
@@ -254,13 +262,19 @@ while continue_loop:
         elif command == 'bearings':
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             for adjacents in current_scene.adjacents:
-                print('Nearby areas that you can see: {}'.format(adjacents))
+                print('You can see a {}'.format(adjacents))
 
         elif command == 'move':
             location = fragments[1]
-            if location in scenemap:
-                current_scene = scenemap[location]
-                current_scene.print_messages()
+            if location == current_scene.tag:
+                    print('The funny thing was, you were already there.')
+            elif location in scenemap:
+                if scenemap[location].name == 'GAG':
+                    print scenemap[location].messages
+                else:
+                    current_scene = scenemap[location]
+                    print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
+                    current_scene.print_messages()
             else:
                 print("You can't find anything that resembles that around you.")
             
@@ -270,6 +284,7 @@ while continue_loop:
             print 'You think now might be the time for action.'
         else:
             print 'You\'re not really sure what that means.'
+    print ''
 
 print('Quitting...')
 ''' End runstrip '''

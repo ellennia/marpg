@@ -3,15 +3,20 @@ class Scene:
     name = 'Default Environment'
     ambient = ''
 
+    def __init__(self, name, gagtext): # Gag psuedoscene
+        self.name = name
+        self.gagtext = gagtext
+
     def __init__(self, name, messages, ambient):
         self.name = name
         self.messages = messages
         self.ambient = ambient
 
-    def __init__(self, name, messages, ambient, adjacents):
+    def __init__(self, name, messages, ambient, tag, adjacents):
         self.name = name
         self.messages = messages
         self.ambient = ambient
+        self.tag = tag
         self.adjacents = adjacents
 
     def get_messages(self):

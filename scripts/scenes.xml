@@ -1,6 +1,6 @@
 <scenes region = "spaceport">
 	<scene>
-		<name>Elyptica Terminal 21</name>
+		<name>Elyptica Spaceport's Terminal 21</name>
 		<tag>terminal_21</tag>
 		<summary>
 			You stumble out of your shuttle into the Elyptica spaceport. It was a rough ride.
@@ -27,7 +27,7 @@
 	</scene>
 
 	<scene>
-		<name>The Bathroom</name>
+		<name>The Spaceport Bathroom</name>
 		<tag>bathroom_1</tag>
 		<summary>
 			It's remarkably well taken care of.
@@ -37,5 +37,11 @@
 		<adjacent>
 			<tag>spaceport_center></tag>
 		</adjacent>
+	</scene>
+
+	<scene>
+		<name>GAG</name>
+		<tag>it</tag>
+		<gagtext>You hurt yourself in confusion.</gagtext>
 	</scene>
 </scenes>
