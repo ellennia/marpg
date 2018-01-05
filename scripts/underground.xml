@@ -1,0 +1,38 @@
+<scenes region = "underground">
+	<scene type = 'standard2' name="The Origin Room" tag="origin">
+		You are in an ominous-feeling cavern.
+		A quick flash of your flashlight indicates that this is red rock.
+		Unsurprising- you didn't figure that you magially somehow got off of Mars.
+		<ambient>It smells like rocks died.</ambient>
+		<adjacent>
+			<tag>well</tag>
+		</adjacent>
+	</scene>
+
+	<scene type="standard2" name="The Well" tag="well">
+		You appear in a large cavern with a massive gash in the floor.
+		It's full of water.
+		How did water get in here, in a cavern under the surface of Mars?
+		Nobody fucking knows.
+		<ambient>You make an effort not to fall in.</ambient>
+		<adjacent>
+			<tag>origin</tag>
+			<tag>the_depth</tag>
+		</adjacent>
+	</scene>
+
+	<scene type="standard2" name="The Deep" tag="the_depth">
+		So, you went and did it. You jumped in.
+		You can barely see anything because of how murky the waters around you are.
+		There's a rumbling noise below you. It gives you a chill.
+		<ambient>You remember you need to breathe soon.</ambient>
+		<adjacent>
+			<tag>well</tag>
+			<tag>the_depther</tag>
+		</adjacent>
+	</scene>
+
+	<scene type="shop2" name="Digitizer" tag="machine">
+		Beep. boop.
+	</scene>
+</scenes>

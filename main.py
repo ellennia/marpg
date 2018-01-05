@@ -172,7 +172,7 @@ does_character_exist = False #detect_save()
 
 if not does_character_exist:
     print (' -- ERROR -- ')
-    yn = request_answer('No character found. Create character? y/n')
+    yn = request_answer('No character found. Create character? y/n/p')
     if yn == 'y':
         clear()
         character = character_creation_sequence()
@@ -180,7 +180,7 @@ if not does_character_exist:
     elif yn == 'p':
         try:
             print('Ah, the old dev cheat.')
-            print('have a pre-made hardcoded character')
+            print('Have a pre-made hardcoded character')
             character = Character('Premade', 'human')
             clear()
         except:
@@ -204,6 +204,9 @@ continue_loop = True
     If your character is from a save file, it is the last scene you were in.
 '''
 
+'''
+    Loads scenes from the scenes.xml file
+'''
 scenes = xml.etree.ElementTree.parse('scripts/scenes.xml').getroot()
 scenemap = {}
 for scene in scenes:
@@ -222,6 +225,7 @@ for scene in scenes:
         the_scene = Scene(name, summary, ambient, game_tag, adjacent_scenes)
         scenemap[game_tag] = the_scene
 current_scene = scenemap['terminal_21']
+# End scene loading
 
 while continue_loop:
     if first_message:
@@ -250,7 +254,7 @@ while continue_loop:
             {the final nothing}: Expresses exasperation.
     '''
     if len(action) == 0:
-        print('typing something might be recommended if you wish to play.')
+        print('Typing something might be recommended if you wish to play.')
     else:
         fragments = action.split()
         command = fragments[0]

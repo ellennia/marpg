@@ -24,6 +24,7 @@
 			<tag>terminal_21</tag>
 			<tag>bathroom_1</tag>
 			<tag>merc_shop</tag>
+			<tag>cafe_1</tag>
 		</adjacent>
 	</scene>
 
@@ -36,7 +37,7 @@
 		</summary>
 		<ambient>It kinda stinks in here, and you don't really have to go to the bathroom.</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 	</scene>
 
@@ -49,7 +50,7 @@ At one table you see two young humans drinking coffee and well focused on their 
 		</summary>
 		<ambient>It smells like freshly baked cinnamon buns. yum!</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 	</scene>
 
@@ -59,7 +60,7 @@ At one table you see two young humans drinking coffee and well focused on their 
 		<summary>Stepping inside you see vast intimidating aisles containing everything imaginable, from guass rifles to shaving cream. Thankfully there's a terminal up front with an easy to navigate catalog, as well as several drones on standby ready to aquire your purchased items for you.</summary>
 		<ambient>It smells like mop water, heavily re-used mop water.</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 		<market style = 'fixed'>
 			<item name='old-style plasma rounds' description="They're useless on a modern gun, but deadly on an antique.">50</item>
