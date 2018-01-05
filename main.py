@@ -210,11 +210,13 @@ continue_loop = True
 scenes = xml.etree.ElementTree.parse('scripts/scenes.xml').getroot()
 scenemap = {}
 for scene in scenes:
+    scene_type = scene.attrib['type']
     name = scene.find('name').text
     if name == 'GAG': # Is gag 'location', only designed to trigger a joke in command prompt
         game_tag = scene.find('tag').text
         gagtext = scene.find('gagtext').text
         scenemap[game_tag] = Scene(name, gagtext, '', game_tag, [])
+        scenemap[game_tag].scene_type = scene_type
     else:
         summary = scene.find('summary').text.split('\n')
         game_tag = scene.find('tag').text
@@ -224,6 +226,7 @@ for scene in scenes:
         adjacent_scenes = [tag.text for tag in adjtags]
         the_scene = Scene(name, summary, ambient, game_tag, adjacent_scenes)
         scenemap[game_tag] = the_scene
+        scenemap[game_tag].scene_type = scene_type
 current_scene = scenemap['terminal_21']
 # End scene loading
 
@@ -277,10 +280,16 @@ while continue_loop:
                     print scenemap[location].messages
                 else:
                     current_scene = scenemap[location]
-                    print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(5), str(10)))
+                    print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
                     current_scene.print_messages()
             else:
                 print("You can't find anything that resembles that around you.")
+
+        elif command == 'shop':
+            if current_scene.scene_type == 'shop':
+                print('The machine sputters, uncertain of how to respond.')
+            else:
+                print('You attempt to conduct a transaction with the air. It is not very effective.')
             
         elif command == 'quit':
             continue_loop = False

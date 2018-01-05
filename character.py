@@ -75,6 +75,7 @@ class Character:
     skills = {}
     inventory = Inventory()
     currency = 0
+    health = 10
 
     def __init__(self, name, species):
         self.name = name

@@ -2,6 +2,7 @@ class Scene:
     messages = []
     name = 'Default Environment'
     ambient = ''
+    scene_type = 'default'
 
     def __init__(self, name, messages, ambient, tag, adjacents):
         self.name = name
