@@ -171,19 +171,23 @@ def character_creation_sequence():
 ''' Start running '''
 character = None
 does_character_exist = False #detect_save()
+clear()
 
 if not does_character_exist:
-    print (' -- ERROR -- ')
-    yn = request_answer('No character found. Create character? y/n/p')
+    print 'MARPG  _ a l p h a'
+    print ''
+    print 'The digitizer has failed to find a valid identity with which to interface with the simulation.'
+    yn = request_answer('Create character or engage in alternate solution? y/n/o')
     if yn == 'y':
         clear()
         character = character_creation_sequence()
         clear()
-    elif yn == 'p':
+    elif yn == 'o':
         try:
-            print('Ah, the old dev cheat.')
-            print('Have a pre-made hardcoded character')
+            print('Ah, the old dev cheat. Beep boop.')
+            print('Have a pre-made hardcoded character.')
             character = Character('Premade', 'human')
+            raw_input()
             clear()
         except:
             print('wah')
