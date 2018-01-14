@@ -1,5 +1,5 @@
 <data class = "npc">
-	<npc name = 'Elo the Gray Alien' species = 'zeta'>
+	<npc name = 'Elo the Gray Alien' key = 'elo_gray_alien' species = 'zeta'>
 		<wp name = 'start' statement = 'Hello earthling, how are you doing today?'>
 			<response case = 'a-good'>Good, how are you?</response>
 			<response case = 'a-lukewarm'>Lukewarm. Space is a dull place.</response>

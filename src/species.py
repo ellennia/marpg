@@ -1,5 +1,3 @@
-from main import *
-
 class Species():
     name = ''
     description = ''

@@ -23,6 +23,7 @@ from shop import *
 # Species information
 species_names = ['human', 'zeta', 'hybrid', 'reptilian']
 
+
 ''' Classes '''
 class NPC:
     def __init__(self, name):
