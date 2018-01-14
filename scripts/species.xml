@@ -1,0 +1,32 @@
+<data class = "species">
+	<species name = "human">
+		<description>A generic species.</description>
+
+		<basestats>
+			<stat name = "agility">2</stat>
+			<stat name = "intelligence">5</stat>
+		</basestats>
+	</species>
+
+	<species name = "zeta">
+		<description></description>
+
+		<basestats>
+		</basestats>
+	</species>
+
+	<species name = "reptillian">
+		<description></description>
+
+		<basestats>
+		</basestats>
+		<special>shapeshifter</special>
+	</species>
+
+	<species name = "hybrid">
+		<description></description>
+
+		<basestats>
+		</basestats>
+	</species>
+</data>
