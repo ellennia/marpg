@@ -18,10 +18,3 @@ class ShopEntry():
 def grab():
     # Context is now in the shop
     pass
-
-
-apples = ShopEntry('apple', 'delicious red fruit', '.40')
-pear = ShopEntry('pear', 'less delicious green fruit', '.60')
-
-apples.db()
-pear.db()
