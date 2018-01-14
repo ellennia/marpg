@@ -1,4 +1,4 @@
-<scenes region = "spaceport">
+<data class = "scene" region = "spaceport">
 	<scene type = 'standard'>
 		<name>Elyptica Spaceport's Terminal 21</name>
 		<tag>terminal_21</tag>
@@ -73,4 +73,4 @@ At one table you see two young humans drinking coffee and well focused on their 
 		<tag>it</tag>
 		<gagtext>You hurt yourself in confusion.</gagtext>
 	</scene>
-</scenes>
+</data>

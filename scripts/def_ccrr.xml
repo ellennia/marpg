@@ -1,4 +1,5 @@
- ================ REPORT ===================== 
+<data class = "script" name = "MCCBOARDINGREPORT"> 
+================ REPORT ===================== 
  MCC Boarding Report 10/22/2436 MCT            
 
 = Passenger name: {{ character_name }}
@@ -13,4 +14,4 @@
 Approved by ATRS (Automatic Terrorism Reduction System): yes
 Flight boarding to commense at 14:36.
  ==============================================
-
+</data>

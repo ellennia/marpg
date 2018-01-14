@@ -1,4 +1,4 @@
-<scenes region = "underground">
+<data class = "scene" region = "underground">
 	<scene type = 'standard2' name="The Origin Room" tag="origin">
 		You are in an ominous-feeling cavern.
 		A quick flash of your flashlight indicates that this is red rock.
