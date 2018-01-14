@@ -17,6 +17,7 @@ from jinja2 import Template
 
 from character import *
 from scenes import *
+from shop import *
 
 ''' Constants '''
 # Species information
@@ -224,7 +225,22 @@ for scene in scenes:
         adjacent = scene.find('adjacent')
         adjtags = adjacent.findall('tag')
         adjacent_scenes = [tag.text for tag in adjtags]
+
+
         the_scene = Scene(name, summary, ambient, game_tag, adjacent_scenes)
+
+        market = scene.find('market')
+        if not market == None:
+            items = []
+            style = market.attrib['style']
+            item_tags = market.findall('item')
+            for item in item_tags:
+                print 'loaded item : ' + item.attrib['name'] + ' ' + item.attrib['description']
+                se = ShopEntry(item.attrib['name'], item.attrib['description'], .50)
+                items.append(se)
+            shop = Shop(items)
+            the_scene.shop = shop
+
         scenemap[game_tag] = the_scene
         scenemap[game_tag].scene_type = scene_type
 current_scene = scenemap['terminal_21']
@@ -287,7 +303,11 @@ while continue_loop:
 
         elif command == 'shop':
             if current_scene.scene_type == 'shop':
-                print('The machine sputters, uncertain of how to respond.')
+                print('The machine sputters, uncertain of how to respond. This feature seems to be under construction.')
+                print('Items for sale:')
+                for item in current_scene.shop.items:
+                    stri = 'Item name: ' + item.name + ' ({}) Price: ' + str(item.price)
+                    stri.format(item.description)
             else:
                 print('You attempt to conduct a transaction with the air. It is not very effective.')
             

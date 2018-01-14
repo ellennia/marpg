@@ -3,6 +3,7 @@ class Scene:
     name = 'Default Environment'
     ambient = ''
     scene_type = 'default'
+    shop = None
 
     def __init__(self, name, messages, ambient, tag, adjacents):
         self.name = name

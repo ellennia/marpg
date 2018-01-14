@@ -1,3 +1,6 @@
-An RPG made by Ellen and Lexi, set on Mars.
+# MaRPG
 
-Uses Jinja for template formatting, and loads scenes using an XML format.
+An as of yet unnamed RPG set on Mars, utilizing a custom XML-driven text adventure engine.
+
+
+Created by Lexi and Ellen.
