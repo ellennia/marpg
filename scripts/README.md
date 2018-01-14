@@ -6,8 +6,8 @@ These files are loaded into the game on load, adding data and populating the wor
 
 All data is encompessed in a data tag-
 
-<data class = "[CLASS]">
-</data>
+\<data class = "[CLASS]"\>
+\</data\>
 
 There are a number of different classes. The class used determines how the game will categorize and use the data within them.
 

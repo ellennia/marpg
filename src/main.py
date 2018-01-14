@@ -24,7 +24,6 @@ from shop import *
 # Species information
 species_names = ['human', 'zeta', 'hybrid', 'reptilian']
 
-
 ''' Classes '''
 class NPC:
     def __init__(self, name):
@@ -178,6 +177,7 @@ if not does_character_exist:
     print 'MARPG  _ a l p h a'
     print ''
     print 'The digitizer has failed to find a valid identity with which to interface with the simulation.'
+
     yn = request_answer('Create character or engage in alternate solution? y/n/o')
     if yn == 'y':
         clear()
