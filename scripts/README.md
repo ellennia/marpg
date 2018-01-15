@@ -23,6 +23,11 @@ There are a number of different classes. The class used determines how the game 
 + scene
 
 	Denotes the structure of the world and the scenes within it.
+	
+	\<scene name = "[NAME]"\>
+		\<adjacent\>
+		\</adjacent\>
+	\</scene\>
 
 + script
 
