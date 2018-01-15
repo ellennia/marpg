@@ -18,6 +18,7 @@ from jinja2 import Template
 from pygtrie import CharTrie
 
 from character import *
+from worldgraph import *
 from scenes import *
 from shop import *
 
@@ -217,11 +218,16 @@ continue_loop = True
 '''
 agg = xmlp.get_scripts()
 scenemap = agg['scene']
-#wg = WorldGraph(scenemap)
+wg = WorldGraph(scenemap)
+
+move_stack = ['Start']
+history_stack = ['Start']
 #current_scene = wg.get_adjacents('DEFNODE')[0]
 
 # Gets the first node adjacent to DEFNODE.
 current_scene = [scenemap[scene] for scene in scenemap if 'DEFNODE' in scenemap[scene].adjacents][0]
+move_stack.append(current_scene.tag)
+history_stack.append(current_scene.tag)
 
 while continue_loop:
     if first_message:
@@ -256,9 +262,10 @@ while continue_loop:
 
         def bearings_command():
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
+            print('You can see a:')
             for adjacents in current_scene.adjacents:
                 if not adjacents == 'DEFNODE':
-                    print('You can see a {}'.format(adjacents))
+                    print '     ', adjacents
 
         def move_command():
             global current_scene
@@ -269,11 +276,38 @@ while continue_loop:
                 if scenemap[location].name == 'GAG':
                     print scenemap[location].messages
                 else:
+                    clear()
+
+                    if move_stack[len(move_stack) - 2] == location:
+                        move_stack.pop()
+                    else:
+                        move_stack.append(location)
+                    history_stack.append(location)
+
                     current_scene = scenemap[location]
                     print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
                     current_scene.print_messages()
             else:
                 print("You can't find anything that resembles that around you.")
+
+        def history_command():
+            history = 'History: '
+            for move in history_stack:
+                history += move + ' -> '
+            print history[:-4]
+
+        def rope_command():
+            history = 'Rope trail ({}): '
+            for move in move_stack:
+                history += move + ' -> '
+            print history[:-4].format(len(move_stack))
+
+        def back_command():
+            move_stack.pop()
+            current_scene = scenemap[move_stack[len(move_stack) - 1]]
+            history_stack.append(current_scene.tag)
+            print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
+            current_scene.print_messages()
 
         def shop_command():
             if current_scene.scene_type == 'shop':
@@ -294,6 +328,9 @@ while continue_loop:
         command_trie['bearings'] = bearings_command
         command_trie['moveto'] = move_command
         command_trie['shop'] = shop_command
+        command_trie['rope'] = rope_command
+        command_trie['history'] = history_command
+        command_trie['back'] = back_command
 
         if command_trie.has_subtrie(command_name) or command_trie.has_key(command_name): 
             list(command_trie[command_name:])[0]()

@@ -1,0 +1,34 @@
+<data class = "scene" region = "mars_surface">
+	<scene type = 'standard'>
+		<name>The Red Wastes</name>
+		<tag>red_wastes</tag>
+		<summary>Nothing to see, nothing to say.</summary>
+		<ambient>The wind is intense.</ambient>
+		<adjacent>
+			<tag>valles_marineris</tag>
+			<tag>garage_c6</tag>
+		</adjacent>
+	</scene>	
+
+	<scene type = 'standard'>
+		<name>Valles Marineris</name>
+		<tag>valles_marineris</tag>
+		<summary>Valles Marineris is easily one of the most striking sites you've ever seen. The bottom of your Redwater hovers above a staggering drop to the Martian surface below. Marineris was home to one of humanity's first colonies on this planet, and there are many settlements there to this day. Your ship requests to know where you would like to go next, of the plethora of options available.</summary>
+		<ambient>Valles Marineris looms below.</ambient>
+		<adjacent>
+			<tag>red_wastes</tag>
+			<tag>iron_city_docks</tag>
+			<tag>marineris_alpha_docks</tag>
+			<tag>the_depths</tag>
+			<tag>the_plains</tag>
+		</adjacent>
+	</scene>
+
+	<scene type = 'standard'>
+		<name>Marineris Alpha City: West Docks</name>
+		<tag>marineris_alpha_docks</tag>
+		<summary>The radio says you need 'alpha gold clearance' to get in. It doesn't appear you have that, so you're out of fucking luck.</summary>
+		<ambient>The air is stale with disappointment.</ambient>
+		<adjacent><tag>valles_marineris</tag></adjacent>
+	</scene>
+</data>

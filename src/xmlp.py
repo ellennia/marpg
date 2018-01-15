@@ -18,7 +18,7 @@ def get_scripts():
 
     map_map['script'] = script_map
     map_map['npc'] = npc_map
-    #map_map['scene'] = scene_map
+    map_map['scene'] = scene_map
     map_map['species'] = species_map
 
     # Get list of scripts in scripts/
@@ -31,7 +31,7 @@ def get_scripts():
             script_map[root.attrib['name']] = root.text
         elif root.attrib['class'] == 'scene':
             scenes = load_scenes(root)
-            map_map['scene'] = scenes
+            map_map['scene'].update(scenes)
         elif root.attrib['class'] == 'npc':
             npcs = load_npcs(root)
         elif root.attrib['class'] == 'species':
