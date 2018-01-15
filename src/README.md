@@ -1,9 +1,9 @@
 # Source
 
-The python code, i.e., the game engine.
+The Python code, i.e., the game engine.
 
 
-## User Input
+## User Interface
 
 Commands are accessed in a trie. When a command is typed, you get the command most similar to what you typed.
 
@@ -11,9 +11,9 @@ b would be automatically completed to bearings, unless there was a command bake,
 
 ## World Graph
 
-The navigatable world is comprised of a *world graph*, an undirected graph where edges represent possible motions a player-character can make between scenes. Each graph node is a dyad of a Scene object, and a tag string. Scenes are loaded from an XML file by XMLP.
+The navigatable world is comprised of a *world graph*, an [undirected graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics#Undirected_graph) where edges represent possible motions a player-character can make between scenes. Each graph node is a dyad of a Scene object, and a tag string. Scenes are loaded from an XML file by XMLP.
 
-Each XML!Scene has a list of 'adjacent' scenes. These are scenes that are directly accesssible to be moved to from the current scene the player-character is in. For example, if s1 is adjacent to s2, and s2 is adjacent to s3, the user can move from s1 to s2, but not to s3 directly- but a user in s2 can move to s3, and one in s3 to s2.
+Each scene has a list of 'adjacent' scenes. These are scenes that are directly accesssible to be moved to from the current scene the player-character is in. For example, if s1 is adjacent to s2, and s2 is adjacent to s3, the user can move from s1 to s2, but not to s3 directly- but a user in s2 can move to s3, and one in s3 to s2.
 
 In this scenario, s1 is adjacent to s2, and s2 to s1. This implies that the XML for both should list the other scene as adjacent to it in XML for them to be accessible from each other- the world graph automatically fills in this 'obvious' counter-adjacency, so only one has to be marked adjacent to the other. This makes the graph always undirected, and removes the possibility of some edges being left accidently directed by omission.
 
