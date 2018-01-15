@@ -247,19 +247,15 @@ while continue_loop:
     if len(action) == 0:
         print('Typing something might be recommended if you wish to play.')
     else:
-        fragments = action.split()
-        command = fragments[0]
+        def question_command(): print 'You could try looking around.'
 
-        if command == '?':
-            print 'You could try looking around.'
-            character.give_item(InventoryStack('goggle', 1))
-
-        elif command == 'bearings':
+        def bearings_command():
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             for adjacents in current_scene.adjacents:
                 print('You can see a {}'.format(adjacents))
 
-        elif command == 'move':
+        def move_command():
+            global current_scene
             location = fragments[1]
             if location == current_scene.tag:
                     print('The funny thing was, you were already there.')
@@ -273,7 +269,7 @@ while continue_loop:
             else:
                 print("You can't find anything that resembles that around you.")
 
-        elif command == 'shop':
+        def shop_command():
             if current_scene.scene_type == 'shop':
                 print('The machine sputters, uncertain of how to respond. This feature seems to be under construction.')
                 print('Items for sale:')
@@ -282,13 +278,21 @@ while continue_loop:
                     stri.format(item.description)
             else:
                 print('You attempt to conduct a transaction with the air. It is not very effective.')
-            
-        elif command == 'quit':
-            continue_loop = False
-        elif command == '':
-            print 'You think now might be the time for action.'
-        else:
-            print 'You\'re not really sure what that means.'
+
+        ''' Command processing ''' 
+        fragments = action.split()
+        command_name = fragments[0]
+        command_map = {}
+        command_map['?'] = question_command
+        command_map['b'] = bearings_command
+        command_map['m'] = move_command
+        command_map['s'] = shop_command
+
+        if command_name in command_map: command_map[command_name]()
+        elif command_name == 'q': continue_loop = False
+        elif command_name == '': print 'You think now might be the time for action.'
+        else: print 'You\'re not really sure what that means.'
+
     print ''
 
 print('Quitting...')
