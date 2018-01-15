@@ -7,17 +7,17 @@
 		</wp>
 
 		<wp name = 'a-horrible' statement = 'Aw, sad to hear. We could repair that here, you know?'>
-			<exit case = 'repair'>You know, I think I'll take you up on that.</response>
-			<exit case = 'nil'>Nah. I'll be okay.</response>
+			<exit case = 'repair'>You know, I think I'll take you up on that.</exit>
+			<exit case = 'nil'>Nah. I'll be okay.</exit>
 		</wp>
 
 		<wp name = 'a-lukewarm' statement = 'I understand. Just got back from Tau- dull out there.'>
-			<exit case = 'sale'>So what do you have for sale?</response>
+			<exit case = 'sale'>So what do you have for sale?</exit>
 			<exit case = 'nil'>I should get going.</exit>
 		</wp>
 
 		<wp name = 'a-good' statement='Ive seen better days.'>
-			<exit case = 'sale'>Do you have anything for sale?</response>
+			<exit case = 'sale'>Do you have anything for sale?</exit>
 			<exit case = 'nil'>I should get going.</exit>
 		</wp>
 	</npc>
