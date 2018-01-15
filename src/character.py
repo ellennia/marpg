@@ -29,9 +29,6 @@ skill_names = [
         'psionics'
         ]
 
-'''
-    add_stack function:
-'''
 class Inventory():
     stacks = []
 
@@ -78,12 +75,11 @@ class Character:
     skills = {}
     inventory = Inventory()
     currency = 0
+    health = 10
 
     def __init__(self, name, species):
         self.name = name
         self.species = species
-
-        print('Instantiating character')
 
         for name in attribute_names:
             self.attributes[name] = 0
@@ -115,4 +111,3 @@ class Character:
 
     def get_currency(self):
         return self.currency
-

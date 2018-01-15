@@ -1,4 +1,4 @@
-<scenes region = "spaceport">
+<data class = "scene" region = "spaceport">
 	<scene type = 'standard'>
 		<name>Elyptica Spaceport's Terminal 21</name>
 		<tag>terminal_21</tag>
@@ -8,7 +8,10 @@
 			You should get your bearings and figure out how to get out of this joint.
 		</summary>
 		<ambient>You shuffle restlessly under the somewhat dim electric lights.</ambient>
-		<adjacent><tag>spaceport_center</tag></adjacent>
+		<adjacent>
+			<tag>DEFNODE</tag>
+			<tag>spaceport_center</tag>
+		</adjacent>
 	</scene>
 
 	<scene type = 'standard'>
@@ -24,6 +27,8 @@
 			<tag>terminal_21</tag>
 			<tag>bathroom_1</tag>
 			<tag>merc_shop</tag>
+			<tag>garage_c6</tag>
+			<tag>cafe_1</tag>
 		</adjacent>
 	</scene>
 
@@ -36,7 +41,7 @@
 		</summary>
 		<ambient>It kinda stinks in here, and you don't really have to go to the bathroom.</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 	</scene>
 
@@ -49,7 +54,20 @@ At one table you see two young humans drinking coffee and well focused on their 
 		</summary>
 		<ambient>It smells like freshly baked cinnamon buns. yum!</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
+		</adjacent>
+	</scene>
+
+	<scene type = 'standard'>
+		<name>Ship Garage C6</name>
+		<tag>garage_c6</tag>
+		<summary>
+			You take steps into the brutalistic concrete wonderland that is Garage C6. The entryway is small, but according to the large banners placed conspiciously on the walls, its important to them to let you know that they managed to tuck away a good 35,000 aircraft in here, somehow, just in C6. The ticket on your phone tells you this is where your ship is waiting. It also tells you that it is a 2038 Redwater Model U. That is distinctly not what you requested, but it's what the machine fates have given you. Only one step away from the red wastes, it feels like you only just got here.
+		</summary>
+		<ambient>The wind outside bites at your mind as it will soon bite at your windshield.</ambient>
+		<adjacent>
+			<tag>red_wastes</tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 	</scene>
 
@@ -59,7 +77,7 @@ At one table you see two young humans drinking coffee and well focused on their 
 		<summary>Stepping inside you see vast intimidating aisles containing everything imaginable, from guass rifles to shaving cream. Thankfully there's a terminal up front with an easy to navigate catalog, as well as several drones on standby ready to aquire your purchased items for you.</summary>
 		<ambient>It smells like mop water, heavily re-used mop water.</ambient>
 		<adjacent>
-			<tag>spaceport_center></tag>
+			<tag>spaceport_center</tag>
 		</adjacent>
 		<market style = 'fixed'>
 			<item name='old-style plasma rounds' description="They're useless on a modern gun, but deadly on an antique.">50</item>
@@ -72,4 +90,4 @@ At one table you see two young humans drinking coffee and well focused on their 
 		<tag>it</tag>
 		<gagtext>You hurt yourself in confusion.</gagtext>
 	</scene>
-</scenes>
+</data>

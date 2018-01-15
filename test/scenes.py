@@ -32,3 +32,12 @@ class Scene:
         for message in self.messages:
             print ':: ' + message
 
+    def summarize(self):
+        print 'standard scene type 2, name: {}, tag: {}'.format(self.name, self.tag)
+        self.print_messages()
+        print 'Ambient: ' + self.ambient
+        print 'Connected to:'
+        for adjacent in self.adjacents:
+            print '         ' + adjacent
+        print '------------------------------------------------'
+
