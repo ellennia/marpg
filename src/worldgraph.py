@@ -2,8 +2,10 @@ class WorldGraph():
     aa = {}
     scenes = []
 
-    def __init__(self):
-        pass
+    def __init__(self, d):
+        for scene in d:
+            s = d[scene]
+
 
     def add(self, scene):
         aa[scene.name] = scene

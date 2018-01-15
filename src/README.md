@@ -17,6 +17,10 @@ Each XML!Scene has a list of 'adjacent' scenes. These are scenes that are direct
 
 In this scenario, s1 is adjacent to s2, and s2 to s1. This implies that the XML for both should list the other scene as adjacent to it in XML for them to be accessible from each other- the world graph automatically fills in this 'obvious' counter-adjacency, so only one has to be marked adjacent to the other. This makes the graph always undirected, and removes the possibility of some edges being left accidently directed by omission.
 
+In addition, the world graph should also be a *connected* graph. That is to say- if you have nodes that aren't connected to the others, they are inaccessible, and there is no way to reach them in the game engine. The game starts the player-character off in a default, hardcoded scene/node named 'DEFNODE'- there should be exactly one scene in the XML adjacent to DEFNODE. The player-character will spawn in that scene. If multiple scenes are adjacent to DEFNODE then the one with the first name alphabetically will be chosen. DEFNODE will not appear in the game (i.e. with 'bearings' or other commands) and therefore the player cannot move back onto it.
+
+There is no error checking and the engine won't tell you if your new scenes aren't connected to the rest of the graph. The one exception to this is that the engine WILL throw an error if there are no nodes are connected to DEFNODE, since without one being there, the game can't meaningfully start.
+
 ## XMLP
 
 The XML loading code. All the 'meat' of a game loaded by this engine (which could be referenced as the MaRPG engine, after the game it is designed for). The full details of the engine's XML format are specified on in the README for the scripts/ folder.

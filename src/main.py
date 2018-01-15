@@ -217,7 +217,11 @@ continue_loop = True
 '''
 agg = xmlp.get_scripts()
 scenemap = agg['scene']
-current_scene = scenemap['terminal_21']
+#wg = WorldGraph(scenemap)
+#current_scene = wg.get_adjacents('DEFNODE')[0]
+
+# Gets the first node adjacent to DEFNODE.
+current_scene = [scenemap[scene] for scene in scenemap if 'DEFNODE' in scenemap[scene].adjacents][0]
 
 while continue_loop:
     if first_message:
@@ -253,7 +257,8 @@ while continue_loop:
         def bearings_command():
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             for adjacents in current_scene.adjacents:
-                print('You can see a {}'.format(adjacents))
+                if not adjacents == 'DEFNODE':
+                    print('You can see a {}'.format(adjacents))
 
         def move_command():
             global current_scene

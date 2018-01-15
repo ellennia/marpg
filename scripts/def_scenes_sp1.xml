@@ -8,7 +8,10 @@
 			You should get your bearings and figure out how to get out of this joint.
 		</summary>
 		<ambient>You shuffle restlessly under the somewhat dim electric lights.</ambient>
-		<adjacent><tag>spaceport_center</tag></adjacent>
+		<adjacent>
+			<tag>DEFNODE</tag>
+			<tag>spaceport_center</tag>
+		</adjacent>
 	</scene>
 
 	<scene type = 'standard'>
