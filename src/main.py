@@ -15,6 +15,7 @@
 import xml.etree.ElementTree # XML
 import xmlp
 from jinja2 import Template
+from pygtrie import CharTrie
 
 from character import *
 from scenes import *
@@ -282,13 +283,15 @@ while continue_loop:
         ''' Command processing ''' 
         fragments = action.split()
         command_name = fragments[0]
-        command_map = {}
-        command_map['?'] = question_command
-        command_map['b'] = bearings_command
-        command_map['m'] = move_command
-        command_map['s'] = shop_command
 
-        if command_name in command_map: command_map[command_name]()
+        command_trie = CharTrie()
+        command_trie['?'] = question_command
+        command_trie['bearings'] = bearings_command
+        command_trie['moveto'] = move_command
+        command_trie['shop'] = shop_command
+
+        if command_trie.has_subtrie(command_name) or command_trie.has_key(command_name): 
+            list(command_trie[command_name:])[0]()
         elif command_name == 'q': continue_loop = False
         elif command_name == '': print 'You think now might be the time for action.'
         else: print 'You\'re not really sure what that means.'

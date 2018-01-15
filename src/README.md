@@ -5,7 +5,7 @@ The python code, i.e., the game engine.
 
 ## User Input
 
-Commands will be (currently are not) accessed in a radix tree. When a command is typed, you get the command most similar to what you typed.
+Commands are accessed in a trie. When a command is typed, you get the command most similar to what you typed.
 
 b would be automatically completed to bearings, unless there was a command bake, where bake would win out because it is alphabetically first.
 
