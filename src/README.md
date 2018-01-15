@@ -5,15 +5,13 @@ The Python code, i.e., the game engine. The body of the game is in scripts in sc
 
 ## User Interface
 
-Commands are accessed by looking up their names in a [trie](https://en.wikipedia.org/wiki/Trie). You get commands you type out in full, but it also allows you to abbreviate commands you type. For instance, **b** would be automatically completed to **bearings**, unless there was a command **bake**, where **bake** would win out because it is alphabetically first.
+Commands are accessed by looking up their names in a [trie](https://en.wikipedia.org/wiki/Trie). You get commands you type out in full, but it also allows you to abbreviate commands you type. For instance, *b* would be automatically completed to *bearings*, unless there was a command *bake*, where *bake* would win out because it is alphabetically first.
 
 ## World Graph
 
-The navigatable world is comprised of a *world graph*, an [undirected graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)#Undirected_graph) where edges represent possible motions a player-character can make between scenes. Each graph node is a dyad of a Scene object, and a tag string. Scenes are loaded from an XML file by XMLP.
+The navigatable world is comprised of a *world graph*, an [undirected graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)#Undirected_graph) where edges represent possible motions a player-character can make between scenes. Each graph node is a dyad of a Scene object, and a tag string. Scenes are loaded from an XML file by XMLP (xmlp.py).
 
-Each scene has a list of adjacent scenes. These are scenes that, in the game, are visible and directly accesssible to be moved into from the current scene the player-character is in. 
-
-For example, if s1 is adjacent to s2, and s2 is adjacent to s3, the user can move from s1 to s2, though not to s3 directly. However, a user in s2 can move to s3, and one in s3 to s2.
+Each scene has a list of adjacent scenes. These are scenes that, in the game, are visible and directly accesssible to be moved into from the current scene the player-character is in. For example, if s1 is adjacent to s2, and s2 is adjacent to s3, the user can move from s1 to s2, though not to s3 directly. However, a user in s2 can move to s3, and one in s3 to s2.
 
 In this scenario, s1 is adjacent to s2, and s2 to s1. This implies that the XML for both should list the other scene as adjacent to it in XML for them to be accessible from each other- the world graph automatically fills in this 'obvious' counter-adjacency, so only one has to be marked adjacent to the other. This makes the graph always *undirected*, and removes the possibility of some edges being left accidently directed by omission.
 
