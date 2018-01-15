@@ -1,0 +1,22 @@
+Space port center:
+
+Cafe La Marte:
+You come into a fairly quiet and spacious cafe. It's very clean and gives a relaxing atmosphere. A bored looking human barista leans behind the counter. scoping the room you see several different patrons.
+At one table you see two young humans drinking coffee and well focused on their laptop screens. In a corner booth are two humans in suits talking to a zeta across from them. Lastly there is a reptillian sitting alone wearing blue MERK tech armor with five sandwitches on a large mostly empty crumb filled plate, implying there were many more at one point.
+-Talk to reptillian/guard: You approach the reptillian, they continue eating without acknowledging your presence
+--"Hello there, I am (name), a pleasure to meet you"
+--[reptile] "*kneeling* Warm days to you warrior caste, this one greets you."
+
+PhotonMart:
+Stepping inside you see vast intimidating aisles containing everything imaginable, from guass rifles to shaving cream. Thankfully there's a terminal up front with an easy to navigate catalog, as well as several drones on standby ready to aquire your purchased items for you.
+
+Docking Bay:
+Before you is a large expansive room with many vessels big and small. There's quite a variety of ships ranging from civilion transport, cargo ships, as well as military fighters and cruisers. Although most of the ships differ in color, all of the military ships are blue and have 'MERK tech' written on them in yellow lettering. Aside from the guards standing by the entrance, there are few people at the docking bay. However, standing by a commercial travel ship is a furious transport pilot getting in a very heated coversation with a guard.
+
+MERK Tech secutity center:
+
+
+Versalife Health clinic:
+
+Elyptica administration center:
+
