@@ -220,14 +220,32 @@ agg = xmlp.get_scripts()
 scenemap = agg['scene']
 wg = WorldGraph(scenemap)
 
-move_stack = ['Start']
+trace_stack = ['Start']
 history_stack = ['Start']
 #current_scene = wg.get_adjacents('DEFNODE')[0]
 
 # Gets the first node adjacent to DEFNODE.
 current_scene = [scenemap[scene] for scene in scenemap if 'DEFNODE' in scenemap[scene].adjacents][0]
-move_stack.append(current_scene.tag)
+trace_stack.append(current_scene.tag)
 history_stack.append(current_scene.tag)
+
+in_ship = True
+
+def move(location):
+    global current_scene
+
+    if trace_stack[len(trace_stack) - 2] == location:
+        trace_stack.pop()
+    else:
+        trace_stack.append(location)
+    history_stack.append(location)
+
+    current_scene = scenemap[location]
+    if in_ship:
+        print('    Current location: {} | Money: {} | Health: {} | Fuel: {}'.format(current_scene.get_name(), str(character.currency), str(character.health), 10))
+    else:
+        print('    Current location: {} | Money: {} | Health: {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
+    current_scene.print_messages()
 
 while continue_loop:
     if first_message:
@@ -261,6 +279,7 @@ while continue_loop:
         def question_command(): print 'You could try looking around.'
 
         def bearings_command():
+            global current_scene
             print 'You take a deep breath and look around, seeing what opportunities are currently available to you.'
             print('You can see a:')
             for adjacents in current_scene.adjacents:
@@ -277,38 +296,26 @@ while continue_loop:
                     print scenemap[location].messages
                 else:
                     clear()
-
-                    if move_stack[len(move_stack) - 2] == location:
-                        move_stack.pop()
-                    else:
-                        move_stack.append(location)
-                    history_stack.append(location)
-
-                    current_scene = scenemap[location]
-                    print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
-                    current_scene.print_messages()
+                    move(location)
             else:
                 print("You can't find anything that resembles that around you.")
 
         def history_command():
-            history = 'History: '
+            history = 'History ({}): '
             for move in history_stack:
                 history += move + ' -> '
-            print history[:-4]
+            print(history[:-4].format(len(history_stack)))
 
         def rope_command():
             history = 'Rope trail ({}): '
-            for move in move_stack:
+            for move in trace_stack:
                 history += move + ' -> '
-            print history[:-4].format(len(move_stack))
+            print(history[:-4].format(len(trace_stack)))
 
         def back_command():
-            move_stack.pop()
-            current_scene = scenemap[move_stack[len(move_stack) - 1]]
-            history_stack.append(current_scene.tag)
-            print('    Current location: {} | Money: {} | Health {}'.format(current_scene.get_name(), str(character.currency), str(character.health)))
-            current_scene.print_messages()
-
+            trace_stack.pop()
+            move(trace_stack[len(trace_stack) - 1])
+            
         def shop_command():
             if current_scene.scene_type == 'shop':
                 print('The machine sputters, uncertain of how to respond. This feature seems to be under construction.')
@@ -319,18 +326,25 @@ while continue_loop:
             else:
                 print('You attempt to conduct a transaction with the air. It is not very effective.')
 
+        def route_command():
+            route_chain = wg.route(fragments[1], fragments[2])
+            route = ''
+            for c in route_chain: route += c.name + ' -> '
+            print 'route computed:', route[:-3]
+
         ''' Command processing ''' 
         fragments = action.split()
         command_name = fragments[0]
 
         command_trie = CharTrie()
         command_trie['?'] = question_command
+        command_trie['back'] = back_command #Can change location
         command_trie['bearings'] = bearings_command
-        command_trie['moveto'] = move_command
-        command_trie['shop'] = shop_command
-        command_trie['rope'] = rope_command
         command_trie['history'] = history_command
-        command_trie['back'] = back_command
+        command_trie['moveto'] = move_command #Can change location
+        command_trie['route'] = route_command
+        command_trie['rope'] = rope_command
+        command_trie['shop'] = shop_command
 
         if command_trie.has_subtrie(command_name) or command_trie.has_key(command_name): 
             list(command_trie[command_name:])[0]()

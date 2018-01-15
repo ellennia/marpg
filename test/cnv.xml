@@ -1,0 +1,9 @@
+<data class = "dialog">
+	<conversation tag='zeta_uno'>
+		<prompt statement = "Hi traveler. How's it going?">
+			<response jump = '0'>Great. Loving the Martian sights.</response>
+			<response jump = '1'>Feeling rusty around the joints.</response>
+			<response jump = '2'>Do I look like I have time to talk?</response>
+		</prompt>
+	</conversation>
+</data>

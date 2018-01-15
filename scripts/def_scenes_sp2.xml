@@ -17,10 +17,7 @@
 		<ambient>Valles Marineris looms below.</ambient>
 		<adjacent>
 			<tag>red_wastes</tag>
-			<tag>iron_city_docks</tag>
 			<tag>marineris_alpha_docks</tag>
-			<tag>the_depths</tag>
-			<tag>the_plains</tag>
 		</adjacent>
 	</scene>
 

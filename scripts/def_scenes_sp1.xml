@@ -52,9 +52,25 @@
 			You come into a fairly quiet and spacious cafe. It's very clean and gives a relaxing atmosphere. A bored looking human barista leans behind the counter. scoping the room you see several different patrons.
 At one table you see two young humans drinking coffee and well focused on their laptop screens. In a corner booth are two humans in suits talking to a zeta across from them. Lastly there is a reptillian sitting alone wearing blue MERK tech armor with five sandwitches on a large mostly empty crumb filled plate, implying there were many more at one point.
 		</summary>
+		<prompts>
+			<option action = 'conv_c1rg'>Talk to the Reptilian Guard</option>
+		</prompts>
 		<ambient>It smells like freshly baked cinnamon buns. yum!</ambient>
 		<adjacent>
 			<tag>spaceport_center</tag>
+			<tag>cafe_kitchen</tag>
+		</adjacent>
+	</scene>
+
+	<scene type = "standard">
+		<name>Cafe la Marte's Kitchen</name>
+		<tag>cafe_kitchen</tag>
+		<summary>
+			It's not as clean as you would have expected. Nobody is here. Seems they only use this place to prepare pastries at night. You get the distinct impression you are not supposed to be here, and in fact may perhaps be watched.
+		</summary>
+		<ambient>Smells like pastries.</ambient>
+		<adjacent>
+			<tag>cafe_1</tag>
 		</adjacent>
 	</scene>
 
